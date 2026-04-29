@@ -100,14 +100,14 @@ const RequestSnippets = ({ request, requestSnippetsSelectors, getComponent }) =>
 
   return (
     <div className="request-snippets" ref={rootRef}>
-      <div style={{ width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center", marginBottom: "15px" }}>
+      <div className={classNames("w-100", "d-flex", "justify-content-start", "align-items-center", "mb-3")}>
         <h4
           onClick={() => handleSetIsExpanded()}
-          style={{ cursor: "pointer" }}
+          className="cursor-pointer"
         >Snippets</h4>
         <button
           onClick={() => handleSetIsExpanded()}
-          style={{ border: "none", background: "none" }}
+          className={classNames("border-0", "bg-transparent")}
           title={isExpanded ? "Collapse operation" : "Expand operation"}
         >
           {isExpanded ? <ArrowDownIcon className="arrow" width="10" height="10" /> : <ArrowIcon className="arrow" width="10" height="10" />}
@@ -115,17 +115,16 @@ const RequestSnippets = ({ request, requestSnippetsSelectors, getComponent }) =>
       </div>
       {
         isExpanded && <div className="curl-command">
-          <div style={{ paddingLeft: "15px", paddingRight: "10px", width: "100%", display: "flex" }}>
+          <div className={classNames("ps-3", "pe-2", "w-100", "d-flex")}>
             {
               snippetGenerators.entrySeq().map(([key, gen]) => {
                 return (
                   <div
                     className={classNames("btn", {"active": key === activeLanguage })}
-                    style={handleGetBtnStyle(key)}
                     key={key}
                     onClick={() => handleGenChange(key)}
                   >
-                    <h4 style={key === activeLanguage ? { color: "white", } : {}}>{gen.get("title")}</h4>
+                    <h4 className={key === activeLanguage ? "text-white" : ""}>{gen.get("title")}</h4>
                   </div>
                 )
               })
